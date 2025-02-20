@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Third party apps
     "django_extensions",
     # Local apps
+    "apps.users",
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# Custom User Model
+AUTH_USER_MODEL = "users.CustomUser"
 
 ROOT_URLCONF = "config.urls"
 
