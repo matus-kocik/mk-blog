@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 
 from decouple import config
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +32,20 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=lambda v: v.split(","))
 # Application definition
 
 INSTALLED_APPS = [
+    # Wagtail built-in apps
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail",
+    "wagtail_localize",
+    "wagtail_localize.locales",
     # Django built-in apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -40,11 +55,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third party apps
     "django_extensions",
+    "modelcluster",
+    "taggit",
     # Local apps
     "apps.users",
+    "apps.articles",
 ]
 
 MIDDLEWARE = [
+    # Django middleware
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -52,6 +71,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Wagtail middleware
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 # Custom User Model
@@ -116,26 +137,53 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "sk"
 
-TIME_ZONE = "UTC"
+LANGUAGES = [
+    ("sk", _("Slovenčina")),
+    ("en", _("English")),
+    ("de", _("Deutsch")),
+    ("es", _("Español")),
+]
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES
+WAGTAILLOCALIZE_ENABLED = True
+TIME_ZONE = "Europe/Bratislava"
+USE_L10N = True
 
-USE_I18N = True
-
+# USE_I18N = True
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-# Static and media files
+# Static files
 STATIC_URL = "/static/"
-STATIC_ROOT = "staticfiles/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# Media files
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Wagtail settings
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
+WAGTAIL_SITE_NAME = "My Blog"
+WAGTAILDOCS_EXTENSIONS = [
+    "csv",
+    "docx",
+    "key",
+    "odt",
+    "pdf",
+    "pptx",
+    "rtf",
+    "txt",
+    "xlsx",
+    "zip",
+]
+
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000"]
