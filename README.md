@@ -7,7 +7,6 @@
 ### **1. Basic Structure**
 
 - **Backend:** Django + Wagtail CMS (simple article management, categories, tags)
-- **Frontend:** Django Templates + Tailwind CSS (fast, simple, and user-friendly UI)
 - **Hosting:** Subdomain `blog.matuskocik.com` (possible deployment on VPS/cloud hosting)
 - **Authentication:** Admin-only (future extension for OAuth, comments)
 
