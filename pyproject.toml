@@ -1,5 +1,5 @@
 [project]
-name = "mk-blog"
+name = "mk-blog-be"
 version = "0.1.0"
 description = "A simple blog application"
 authors = [

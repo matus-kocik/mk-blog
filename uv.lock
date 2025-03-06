@@ -336,7 +336,7 @@ wheels = [
 ]
 
 [[package]]
-name = "mk-blog"
+name = "mk-blog-be"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

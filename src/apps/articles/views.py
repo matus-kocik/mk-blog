@@ -1,13 +1,16 @@
-from django.shortcuts import get_object_or_404, render
+from django.views.generic import DetailView, ListView
 
 from .models import ArticlePage
 
 
-def article_index(request):
-    articles = ArticlePage.objects.all()
-    return render(request, "articles/article_index.html", {"articles": articles})
+class ArticleListView(ListView):
+    model = ArticlePage
+    template_name = "articles/articles.html"
+    context_object_name = "articles"
+    queryset = ArticlePage.objects.all().order_by("-date_published")
 
 
-def article_detail(request, slug):
-    article = get_object_or_404(ArticlePage, slug=slug)
-    return render(request, "articles/article_detail.html", {"article": article})
+class ArticleDetailView(DetailView):
+    model = ArticlePage
+    template_name = "articles/article.html"
+    context_object_name = "article"

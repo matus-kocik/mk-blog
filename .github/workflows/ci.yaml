@@ -1,4 +1,4 @@
-name: CI/CD for mk-blog
+name: CI/CD for mk-blog-be
 
 # Trigger workflow on push and pull requests to main branch
 on:

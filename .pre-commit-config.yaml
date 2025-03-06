@@ -18,14 +18,14 @@ repos:
 
   # isort - organizes imports
   - repo: https://github.com/PyCQA/isort
-    rev: 6.0.0
+    rev: 6.0.1
     hooks:
       # Sorts and organizes imports in Python files
       - id: isort
 
   # Ruff - linter and formatter
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.9.6
+    rev: v0.9.9
     hooks:
       # Checks for coding issues
       - id: ruff
@@ -36,7 +36,7 @@ repos:
 
   # UV-specific hooks
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.6.1
+    rev: 0.6.4
     hooks:
       # Updates uv.lock if pyproject.toml changes
       - id: uv-lock

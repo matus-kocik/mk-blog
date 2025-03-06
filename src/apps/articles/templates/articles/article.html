@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ article.title }} - My Blog{% endblock %}
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.date_published }}</p>
+    <div>{{ article.content|richtext }}</div>
+    <a href="{% url 'article_index' %}">Back to articles</a>
+{% endblock %}
